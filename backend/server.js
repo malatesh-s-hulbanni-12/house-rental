@@ -13,7 +13,8 @@ const allowedOrigins = [
     'http://localhost:5173', // Local development
     'https://house-rental1.vercel.app', // Your production frontend
     'https://house-rental1-git-main-*.vercel.app', // Vercel preview deployments
-    'https://*.vercel.app' // All Vercel domains
+    'https://*.vercel.app', // All Vercel domains
+    'http://localhost' // For local mobile testing
 ];
 
 app.use(cors({
