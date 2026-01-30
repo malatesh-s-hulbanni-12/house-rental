@@ -8,9 +8,37 @@ dotenv.config();
 const app = express();
 
 // Middleware with increased limits for base64 images
+// Updated CORS configuration - Replace the above code with:
+const allowedOrigins = [
+    'http://localhost:5173', // Local development
+    'https://house-rental1.vercel.app', // Your production frontend
+    'https://house-rental1-git-main-*.vercel.app', // Vercel preview deployments
+    'https://*.vercel.app' // All Vercel domains
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL
-  credentials: true
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, postman)
+        if (!origin) return callback(null, true);
+        
+        // Check if origin is in allowed list
+        if (allowedOrigins.some(allowed => {
+            // Handle wildcard patterns
+            if (allowed.includes('*')) {
+                const pattern = allowed.replace('*', '.*');
+                return new RegExp(pattern).test(origin);
+            }
+            return allowed === origin;
+        })) {
+            callback(null, true);
+        } else {
+            console.log('Blocked by CORS:', origin);
+            callback(new Error(`Not allowed by CORS. Origin: ${origin}`));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Origin']
 }));
 app.use(express.json({ limit: '50mb' })); // Increased limit for base64
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
