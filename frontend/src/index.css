@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern CSS Customizations */
+@layer base {
+  :root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #8b5cf6;
+    --accent: #10b981;
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Modern Cards */
+  .modern-card {
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 
+           border border-gray-100 overflow-hidden;
+  }
+
+  .modern-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply backdrop-blur-lg bg-white/70 border border-white/20;
+  }
+
+  /* Modern Buttons */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white 
+           px-6 py-3 rounded-xl font-semibold 
+           hover:from-blue-600 hover:to-blue-700 
+           active:scale-[0.98] transition-all duration-200 
+           shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-gradient-to-r from-purple-500 to-purple-600 text-white 
+           px-6 py-3 rounded-xl font-semibold 
+           hover:from-purple-600 hover:to-purple-700 
+           active:scale-[0.98] transition-all duration-200 
+           shadow-lg hover:shadow-xl;
+  }
+
+  .btn-outline {
+    @apply border-2 border-blue-500 text-blue-600 
+           px-6 py-3 rounded-xl font-semibold 
+           hover:bg-blue-50 active:scale-[0.98] 
+           transition-all duration-200;
+  }
+
+  /* Form Inputs */
+  .modern-input {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+           bg-white focus:border-blue-500 focus:ring-2 
+           focus:ring-blue-200 focus:outline-none 
+           transition-all duration-200;
+  }
+
+  .modern-select {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 
+           bg-white focus:border-blue-500 focus:ring-2 
+           focus:ring-blue-200 focus:outline-none 
+           transition-all duration-200 appearance-none;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full 
+           text-sm font-semibold;
+  }
+
+  .badge-rent {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .badge-lease {
+    @apply bg-purple-100 text-purple-800;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply relative text-gray-700 hover:text-blue-600 
+           transition-colors duration-200 
+           after:content-[''] after:absolute after:left-0 
+           after:-bottom-1 after:w-0 after:h-0.5 
+           after:bg-blue-500 after:transition-all 
+           after:duration-300 hover:after:w-full;
+  }
+
+  /* Animations */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  /* Property Card - FIXED: Don't use @apply with group */
+  .property-card {
+    @apply modern-card overflow-hidden;
+  }
+  
+  .property-card:hover .property-image {
+    transform: scale(1.05);
+  }
+
+  .property-image {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 
+           bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-400;
+}
+
+/* Selection */
+::selection {
+  @apply bg-blue-100 text-blue-900;
+}
+/* Add to your existing CSS */
+@layer components {
+  /* Image Carousel Animations */
+  .carousel-slide-enter {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
+  .carousel-slide-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 500ms, transform 500ms;
+  }
+  
+  .carousel-slide-exit {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .carousel-slide-exit-active {
+    opacity: 0;
+    transform: scale(1.05);
+    transition: opacity 500ms, transform 500ms;
+  }
+  
+  /* Pulse animation for image change */
+  @keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+  
+  .pulse-soft {
+    animation: pulse-soft 0.5s ease-in-out;
+  }
+}
+/* Add to your index.css */
+@layer components {
+  /* Enhanced carousel animations */
+  .carousel-image {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-in-out;
+  }
+  
+  .carousel-dot {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Smooth zoom effect */
+  @keyframes smooth-zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .smooth-zoom {
+    animation: smooth-zoom 3s ease-in-out infinite;
+  }
+  
+  /* Hover effects for buttons */
+  .nav-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .nav-button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Card hover effect */
+  .property-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .property-card:hover {
+    transform: translateY(-5px);
+  }
+}
+/* Image carousel animations */
+.image-slide-enter {
+  opacity: 0;
+}
+
+.image-slide-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.image-slide-exit {
+  opacity: 1;
+}
+
+.image-slide-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+/* Auto-slide animation for dots */
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.auto-slide-dot {
+  animation: pulse 3s infinite;
+}
+
+/* Smooth transition for active dot */
+.active-dot {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
