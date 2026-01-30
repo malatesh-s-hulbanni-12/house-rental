@@ -134,7 +134,7 @@ const PropertyForm = ({ adminEmail, onPropertyAdded, editProperty, onCancelEdit 
       if (editProperty) {
         // Update existing property
         response = await axios.put(
-          `${import.meta.env.VITE_API_URL}/properties/update/${editProperty._id}`,
+          `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties/update/${editProperty._id}`,
           propertyData,
           {
             headers: { 'Content-Type': 'application/json' },
@@ -144,7 +144,7 @@ const PropertyForm = ({ adminEmail, onPropertyAdded, editProperty, onCancelEdit 
       } else {
         // Create new property
         response = await axios.post(
-          `${import.meta.env.VITE_API_URL}/properties/add`,
+          `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties/add`,
           propertyData,
           {
             headers: { 'Content-Type': 'application/json' },

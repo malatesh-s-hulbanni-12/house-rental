@@ -12,7 +12,7 @@ const MyCreations = ({ adminEmail }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/properties/my-creations/${adminEmail}`
+        `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties/my-creations/${adminEmail}`
       );
       
       if (response.data.success) {
@@ -39,7 +39,7 @@ const MyCreations = ({ adminEmail }) => {
     if (window.confirm('Are you sure you want to delete this property?')) {
       try {
         await axios.delete(
-          `${import.meta.env.VITE_API_URL}/properties/delete/${id}`
+          `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties/delete/${id}`
         );
         fetchProperties();
       } catch (err) {

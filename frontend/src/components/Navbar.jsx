@@ -86,7 +86,9 @@ const Navbar = ({ isLoggedIn, adminEmail, onLogout }) => {
   className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 transition-colors group"
   onClick={() => setShowDropdown(false)}
 >
-  <span className="mr-3 text-blue-500">📊</span>
+  <span className=
+  
+  "mr-3 text-blue-500">📊</span>
   <span>Dashboard</span>
 </Link>
                         

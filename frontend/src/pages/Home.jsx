@@ -74,9 +74,9 @@ const Home = () => {
     try {
       setLoading(true);
       
-      console.log('🌐 Fetching properties from:', `${import.meta.env.VITE_API_URL}/properties`);
+      console.log('🌐 Fetching properties from:', `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties`);
       
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/properties`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties`);
       
       console.log('📦 API Response:', response.data);
       
@@ -344,7 +344,7 @@ const Home = () => {
 
       // Send feedback to backend
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/feedback`,
+        `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback`,
         feedbackData,
         {
           headers: {
@@ -613,7 +613,7 @@ const Home = () => {
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
             <p className="mt-4 text-gray-600">Loading properties...</p>
             <p className="text-sm text-gray-500 mt-2">
-              Checking: {import.meta.env.VITE_API_URL}/properties
+              Checking: {import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/properties
             </p>
           </div>
         ) : filteredProperties.length === 0 ? (

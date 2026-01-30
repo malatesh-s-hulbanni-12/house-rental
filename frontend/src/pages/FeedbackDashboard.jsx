@@ -32,9 +32,9 @@ const FeedbackDashboard = () => {
   const fetchFeedbacks = async () => {
     try {
       setLoading(true);
-      console.log('📋 Fetching feedback from:', `${import.meta.env.VITE_API_URL}/feedback`);
+      console.log('📋 Fetching feedback from:', `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback`);
       
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/feedback`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback`);
       
       console.log('📦 Feedback API Response:', response.data);
       console.log('📊 Response success:', response.data.success);
@@ -64,7 +64,7 @@ const FeedbackDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/feedback/stats`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback/stats`);
       if (response.data.success) {
         setStats(response.data.stats);
       }
@@ -98,7 +98,7 @@ const FeedbackDashboard = () => {
   const updateStatus = async (feedbackId, newStatus) => {
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_URL}/feedback/${feedbackId}/status`,
+        `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback/${feedbackId}/status`,
         { status: newStatus }
       );
 
@@ -126,7 +126,7 @@ const FeedbackDashboard = () => {
 
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_URL}/feedback/${feedbackId}`
+        `${import.meta.env.VITE_API_URL || 'https://house-rental-rho.vercel.app/api'}/feedback/${feedbackId}`
       );
 
       if (response.data.success) {
